@@ -1,0 +1,27 @@
+Who is drawing salary less than 3500
+List the details of all the clerks
+List the names starting with A
+List the names whose name ends with D
+List the names in which 3rd  character is L
+
+
+
+SELECT ename
+FROM emp
+WHERE sal < 3500;
+
+SELECT *
+FROM emp
+WHERE job LIKE 'CLERK';
+
+SELECT ename
+FROM emp
+WHERE ename LIKE 'A%';
+
+SELECT ename
+FROM emp
+WHERE ename LIKE '%D';
+
+SELECT ename
+FROM emp
+WHERE ename LIKE '__L%';

@@ -1,0 +1,62 @@
+What is the emp num of 'James'
+Waht is the salary of 'king'?
+Who is the President for organization?
+Which dept is in Boston?
+What is the dept number of accounting?
+List Employee names drawing sal bet 1500 & 3000?
+List all details of all the managers?
+Give emp details for employees drawing commission?
+Who is the manager for dept no 30?
+List employees who joined before april-1981?
+What is the salary of following: King, blake,ford,smith
+Give the hiredate of president & managers
+
+
+SELECT empno 
+FROM EMP
+WHERE ename = 'JAMES';
+
+SELECT sal 
+FROM EMP
+WHERE ename = 'KING';
+
+SELECT ename 
+FROM EMP
+WHERE job = 'PRESIDENT';
+
+SELECT dname 
+FROM DEPT
+WHERE loc = 'BOSTON';
+
+SELECT deptno 
+FROM DEPT
+WHERE dname = 'ACCOUNTING';
+
+SELECT ename 
+FROM EMP
+WHERE sal > 1500 AND sal < 3000;
+
+SELECT * 
+FROM EMP
+WHERE job = 'MANAGER';
+
+SELECT * 
+FROM EMP
+WHERE comm IS NOT NULL;
+
+SELECT ename
+FROM EMP
+WHERE job = 'MANAGER' AND deptno IS 30
+
+SELECT ename
+FROM EMP
+WHERE hiredate IN ('%jan-81', '%feb-81', '%mar-81');
+
+SELECT ename,sal
+FROM EMP
+WHERE ename IN ('KING','BLAKE','FORD','SMITH')
+
+
+SELECT ename,job,hiredate
+FROM EMP
+WHERE job IN ('PRESIDENT','MANAGER')
