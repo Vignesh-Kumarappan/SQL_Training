@@ -1,0 +1,16 @@
+                               
+                              .........Updating the file as we learn through and as per the demos you give.........
+
+
+
+
+
+1. Person --- Name, DOB
+
+2. Teacher:Person --- Batches, Skills, skills(), batches()
+
+3. Student:person --- Id, skills(), batches()
+
+4. Course --- teacher, student, number of section, number of exercise
+
+5. Section - Id, teachers(), students() 
