@@ -1,0 +1,25 @@
+1. create function which accepts empno and return his/her annual sal
+
+create function GetSalaryByID(@empno int)
+returns int
+begin 
+declare @AnnualSalary int
+select @AnnualSalary = sal*12 from emp where empno = @empno
+return @AnnualSalary
+end
+
+select dbo.GetSalaryByID(7788)
+
+-----------------------------------------------------------------------------------------------------
+
+2. create a function which accepts deptno and returns no of employee available in that deptno
+
+create function GetEmployeeCountByDeptNo(@deptno int)
+returns int
+begin 
+declare @count int
+select @count = count(empno) from emp where deptno = @deptno
+return @count
+end
+
+select dbo.GetEmployeeCountByDeptNo(10)

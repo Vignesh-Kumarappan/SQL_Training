@@ -1,0 +1,26 @@
+1. Create a function which accepts mgrid and display all emps who report to that person
+
+create function GetEmployeeByManagerID(@mgrID int)
+returns table
+as
+return
+(
+     select ename from emp where @mgrID = mgr
+);
+
+select * from GetEmployeeByManagerID(7788)
+
+----------------------------------------------------------------------------------------------
+
+2. Create a function which accepts num as a salary and display all emps who get sal more than given sal
+
+alter function GetEmployeeByGreaterSalary(@salary int)
+returns table
+as
+return
+(
+     select ename from emp where sal>@salary
+);
+
+select * from GetEmployeeByGreaterSalary(2000)
+

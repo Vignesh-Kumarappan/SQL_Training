@@ -1,0 +1,10 @@
+GO is not a SQL keyword.It is a batch terminator.
+
+It's a batch separator used by client tools (like SSMS) to break the entire script up into batches.
+
+SQL Server utilities interpret GO as a signal that they should send the current batch of Transact-SQL 
+statements to an instance of SQL Server. (i.e).. The GO command groups SQL commands into batches which
+are sent to the server together. 
+
+These commands can be used to facilitate the readability and execution of batches and scripts.
+

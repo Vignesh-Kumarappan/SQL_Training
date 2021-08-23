@@ -1,0 +1,91 @@
+1. create a SP which accepts deptno and display all emp details who belong to that deptno
+
+Create procedure GetEmployeeDetailsByDeptNo (@deptno int)
+as
+begin
+select empno,ename,sal,job,deptno,comm,mgr from emp 
+where deptno = @deptno
+end
+
+exec GetEmployeeDetailsByDeptNo 30
+
+-----------------------------------------------------------------------------------------------
+
+2. create a SP which accepts empno and display his/her annual sal
+
+Create procedure GetEmployeeSalaryByEmpNo (@empno int)
+as
+begin
+select empno,sal*12 from emp 
+where empno = @empno
+end
+
+exec GetEmployeeSalaryByEmpNo 7788
+
+-----------------------------------------------------------------------------------------------
+
+3. create a SP which accepts deptno and display how many employees working in that deptno
+
+Create procedure GetEmployeeCountInDeptNo (@deptno int)
+as
+begin
+select Count(empno) 'Employee Count' from emp 
+where deptno = @deptno
+end
+
+exec GetEmployeeCountInDeptNo 10
+
+-----------------------------------------------------------------------------------------------
+
+4. create a SP which accepts deptno and display what is the min and max sal taken in that deptno
+
+Create procedure GetMaxMinSalInDeptNo (@deptno int)
+as
+begin
+select MAX(sal) 'Max Salary',MIN(sal) 'Min Salry' from emp 
+where deptno = @deptno
+end
+
+exec GetMaxMinSalInDeptNo 10
+
+-----------------------------------------------------------------------------------------------
+
+5. Adding new row 
+
+create procedure AddNewDept(@deptno int, @dname varchar(20), @loc varchar(20))
+as
+begin
+insert into dept values (@deptno,@dname,@loc)
+end
+
+exec AddNewDept 50, 'TRAINING', 'Bangalore'
+exec AddNewDept 60, 'ADMIN', 'Hydrabad'
+exec AddNewDept 70, null, null
+
+-----------------------------------------------------------------------------------------------
+
+6. Deleting row 
+
+create procedure DeleteDeptByDeptno(@deptno int)
+as
+begin
+delete from dept 
+where deptno = @deptno
+end
+
+exec DeleteDeptByDeptno 70
+
+-----------------------------------------------------------------------------------------------
+
+7. updating row detail
+
+create procedure ChangeLocationByDept(@deptno int, @loc varchar(20))
+as
+begin
+update dept 
+set loc = @loc 
+where deptno = @deptno
+end
+
+exec ChangeLocationByDept 60, 'Chennai'
+
