@@ -1,0 +1,51 @@
+Numeric Functions
+
+SELECT CEILING(111.11)
+SELECT FLOOR(111.11)
+SELECT RAND()
+SELECT ROUND(123.994, 2)
+SELECT SQRT(1.00)
+
+STRING Functions
+
+SELECT ASCII('A') AS 'ASCII'
+SELECT CHAR(78) AS 'N'
+SELECT CONCAT('Vignesh ','20256');
+SELECT LEFT('Vignesh',3);
+SELECT LEN('Vignesh');
+SELECT LOWER('VIGNESH');
+SELECT LTRIM('     Vignesh')
+SELECT REPLACE('Vignesh 20256','Vignesh','Vicky')
+SELECT REPLICATE('0', 5)
+SELECT REVERSE('Vignesh')
+SELECT RIGHT('Vignesh',3);
+SELECT RTRIM('Vignesh        ')
+SELECT SUBSTRING('Vignesh',1,3)
+SELECT TRIM('     Vignesh       ')
+SELECT UPPER('vignesh');
+
+
+Date and Time Functions
+
+DECLARE @time time(4) = getdate()
+DECLARE @date date = getdate()
+DECLARE @DateTime datetime = getdate()
+getdate()
+SELECT DATENAME(month,getdate())
+SELECT DATEPART(month, getdate())
+SELECT DAY(getdate())
+SELECT MONTH(getdate())
+SELECT YEAR(getdate())
+SELECT DATEDIFF(day,'2021-01-05','2021-01-01')
+SELECT DATEADD(year,1, '20210913')
+IF ISDATE('2021-08-23 ') = 1  
+PRINT 'VALID'  
+ELSE  
+PRINT 'INVALID'; 
+
+
+
+
+
+
+
