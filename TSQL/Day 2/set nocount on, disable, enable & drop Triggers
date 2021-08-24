@@ -1,0 +1,12 @@
+set nocount on 
+
+SQL Server shows the number of affected rows in the messages pane. If we specify this set statement 
+at the beginning, Once we enable it, we do not get the number of affected rows in the output.
+
+----------------------------------------------------------------------------------------------------------
+
+ disable trigger triggerInsteadOfDelete on emp
+
+ enable trigger triggerInsteadOfDelete on emp
+
+ drop trigger TriggerInsteadOfDelete
