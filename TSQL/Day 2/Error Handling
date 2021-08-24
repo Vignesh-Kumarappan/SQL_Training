@@ -1,0 +1,12 @@
+Divide by zero exception
+
+begin try
+         declare @number1 int =5;
+         declare @number2 int =0;
+	 declare @number3 int = @number1/@number2;
+end try
+begin catch
+print @@error
+print Error_number()
+print Error_message();
+end catch
