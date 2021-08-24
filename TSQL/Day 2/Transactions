@@ -1,0 +1,29 @@
+use Vignesh_20256
+
+select * from employee_test
+
+INSERT INTO Employee_Test VALUES ('vicky',2000);
+INSERT INTO Employee_Test VALUES ('Vignesh',1000);
+INSERT INTO Employee_Test VALUES ('Ram',3000);
+
+
+begin transaction transaction_1; 
+delete from employee_test where emp_id = 13;
+commit;
+
+begin transaction transaction_2;
+delete from employee_test where emp_id = 5;
+rollback;
+
+save transaction BeforeDeletion
+
+delete from employee_test where emp_id = 11
+
+save transaction AfterDeleting11
+
+delete from employee_test where emp_id = 12
+
+save transaction AfterDeleting12
+
+begin transaction;
+rollback transaction BeforeDeletion
