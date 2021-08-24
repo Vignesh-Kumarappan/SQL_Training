@@ -1,0 +1,55 @@
+1. create a trigger which does not allow delete on emp on Tuesday and not delete president
+
+   create trigger TriggerInsteadOfDelete on emp
+   instead of delete
+   as
+      declare @empno int;
+	  declare @job varchar(30);
+	  select @job = d.job from deleted d;
+	  declare @day int = datepart(WEEKDAY,getdate());
+	  select @empno = d.empno from deleted d;
+	  begin
+	      
+		  if(@day = 3)
+		  raiserror('Record Cannot be deleted on tuesday ..',16,1)
+		  
+		  else if(@job = 'PRESIDENT')
+		  raiserror('President cannot be deleted..',16,1)
+		  
+		  else
+		  begin
+		    delete from emp where empno =@empno;
+			print 'Record deleted -- instead of delete trigger';
+		   end	
+	  end
+   GO
+
+   delete from emp where empno =7839
+
+-------------------------------------------------------------------------------------------
+
+2. create a trigger which doesnt allow sal update if current sal is more than proposed
+
+   create trigger TriggerInsteadOfupdate_OnSalary on emp
+   instead of update
+   as
+      declare @empno int;
+	  declare @sal_old int;
+	  declare @sal_new int;
+	  select @empno = d.empno from deleted d;
+	  select @sal_old = d.sal from deleted d;
+	  select @sal_new = i.sal from inserted i;
+	  begin
+	      if(@sal_new < @sal_old)
+		  raiserror('Salary can not be updated ..',16,1)
+		  else
+		  begin
+		    update emp set sal = @sal_new where empno =@empno;
+			print 'Record updated -- instead of update trigger';
+		   end	
+	  end
+   GO
+
+   update emp set sal = 100 where empno = 7839
+
+-------------------------------------------------------------------------------------------------
