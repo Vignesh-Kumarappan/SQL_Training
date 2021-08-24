@@ -53,3 +53,63 @@
    update emp set sal = 100 where empno = 7839
 
 -------------------------------------------------------------------------------------------------
+
+3. After triggers for all DML operations
+
+CREATE TRIGGER triggerAfterOnDMLOperations ON Employee_Test
+FOR INSERT,DELETE,UPDATE
+AS
+	declare @empid int;
+	declare @empname varchar(100);
+	declare @empsal decimal(10,2);
+	declare @audit_action varchar(100);
+	declare @inscount int;
+	declare @delcount int;
+
+	select @insertcount= Count(*) from inserted i;
+	select @deletedcount= Count(*) from deleted d;
+
+	--Insert Condition
+	if(@insertcount>0 and @deletedcount=0)
+	BEGIN
+	select @empid=i.Emp_ID from inserted i;
+	select @empname=i.Emp_Name from inserted i;
+	select @empsal=i.Emp_Sal from inserted i;
+	set @audit_action='Inserted Record--
+	After Insert Trigger.';
+	insert into Employee_Test_Audit
+	values(@empid,@empname,@empsal,@audit_action,getdate());
+	PRINT 'After Insert Trigger fired.'
+	END
+
+	--Delete Condition
+	if(@insertcount=0 and @deletedcount>0)
+	BEGIN
+	select @empid=i.Emp_ID from deleted i;
+	select @empname=i.Emp_Name from deleted i;
+	select @empsal=i.Emp_Sal from deleted i;
+	set @audit_action='Deleted Record--
+	After Delete Trigger.';
+	insert into Employee_Test_Audit
+	values(@empid,@empname,@empsal,@audit_action,getdate());
+	PRINT 'After Delete Trigger fired.'
+	END
+
+	--Update Condition
+	if(@insertcount>0 and @deletedcount>0)
+	BEGIN
+	select @empid=i.Emp_ID from deleted i;
+	select @empname=i.Emp_Name from deleted i;
+	select @empsal=i.Emp_Sal from deleted i;
+	select @empid=i.Emp_ID from inserted i;
+	select @empname=i.Emp_Name from inserted i;
+	select @empsal=i.Emp_Sal from inserted i;
+	set @audit_action='Updated Record--
+	After Update Trigger.';
+	insert into Employee_Test_Audit
+	values(@empid,@empname,@empsal,@audit_action,getdate());
+	PRINT 'After Update Trigger fired.'
+	END
+GO
+
+----------
