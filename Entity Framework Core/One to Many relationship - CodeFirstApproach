@@ -1,0 +1,29 @@
+ [Table("PROJECT")]
+    public class Project
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ProjectID { get; set; }
+
+        [Required]
+        public string ProjectName { get; set; }
+
+        public virtual ICollection<Employee> Employees { get; set; } 
+    }
+    
+    -----------------
+    
+    
+    public class Employee
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int EmployeeID { get; set; }
+      
+        [Required]
+        public string EmployeeName { get; set; }
+
+        [Required]
+        [MaxLength(10)]
+        public int EmployeeContactNumber { get; set; }
+
+        public Project Proj { get; set; } //navigation prop
+    }
