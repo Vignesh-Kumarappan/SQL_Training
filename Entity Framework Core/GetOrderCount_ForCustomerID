@@ -1,0 +1,14 @@
+private static void GetOrderCount_ForCustomerID()
+        {
+           
+                var ctx = new Context();
+
+                var result = from ord in ctx.Orders
+                             group ord by ord.cust.ID into g
+                             select new { customer = g.Key, count = g.Count() };
+
+                foreach (var item in result)
+                {
+                    Console.WriteLine(item.customer + " " + item.count.ToString());
+                }           
+        }
