@@ -1,0 +1,71 @@
+         private static void DisconnectedArchireture_Insert()
+         {
+            var ctx = new Vignesh_20256Context();
+
+            try
+            {
+
+                Emp emp = new Emp();
+                emp.Empno = 20256;
+                emp.Ename = "Vignesh";
+                emp.Sal = 1000;
+                emp.Deptno = 10;
+
+                ctx.Dispose();
+
+                InsertEmp(emp);
+
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        private static void InsertEmp(Emp emp)
+        {
+ 
+            var ctx = new Vignesh_20256Context();
+
+            Console.WriteLine(ctx.Entry(emp).State.ToString());
+
+            ctx.Attach(emp).State = EntityState.Added;
+
+            ctx.SaveChanges();
+            Console.WriteLine("Added via Disconnected mode");
+        }
+
+        private static void DisconnectedArchireture_Delete()
+        {
+            var ctx = new Vignesh_20256Context();
+
+            try
+            {
+                var emp = ctx.Emps.Where(e => e.Empno == 20256).SingleOrDefault();
+
+                ctx.Dispose();
+
+                DeleteEmp(emp);
+
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        private static void DeleteEmp(Emp emp)
+        {
+            var ctx = new Vignesh_20256Context();
+
+            Console.WriteLine(ctx.Entry(emp).State.ToString());
+
+            ctx.Attach(emp).State = EntityState.Deleted;
+
+            ctx.SaveChanges();
+            Console.WriteLine("Delete via Disconnected mode");
+        }
