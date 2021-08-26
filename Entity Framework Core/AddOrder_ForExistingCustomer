@@ -1,0 +1,23 @@
+ private static void AddOrder_ForExistingCustomer()
+        {
+            var ctx = new Context();
+            Customer newcust = new Customer();
+            
+            Order ord = new Order();
+            ord.Order_ID = 40;
+            ord.Amount = 200;
+            ord.OrderDate = DateTime.Now;
+
+            ord.cust = ctx.Customers.Where(ctx => ctx.ID == 1).SingleOrDefault();
+
+            try
+            {
+                ctx.Orders.Add(ord);              
+                ctx.SaveChanges();
+                Console.WriteLine("New Order Added...");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.InnerException.ToString());
+            }
+        }
