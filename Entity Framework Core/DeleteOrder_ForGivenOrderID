@@ -1,0 +1,19 @@
+ private static void DeleteOrder_ForGivenOrderID()
+        {
+            var ctx = new Context();
+            //Customer newcust = new Customer();
+
+            //ord.cust = ctx.Customers.Where(ctx => ctx.ID == 1).SingleOrDefault();
+            var remove = ctx.Orders.Where(o => o.Order_ID == 40).SingleOrDefault();
+
+            try
+            {
+                ctx.Orders.Remove(remove);
+                ctx.SaveChanges();
+                Console.WriteLine("Order Removed...");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.InnerException.ToString());
+            }
+        }
