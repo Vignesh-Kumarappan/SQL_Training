@@ -1,7 +1,7 @@
 private static void DeleteOrder_ForGivenCustomerID()
         {
             var ctx = new Context();
-            var customerID = ctx.Customers.SingleOrDefault(c => c.ID == 3);
+            var customerID = ctx.Customers.SingleOrDefault(c => c.ID == 2);
             var orders = ctx.Orders.Where(o => o.cust == customerID);
             try
             {
