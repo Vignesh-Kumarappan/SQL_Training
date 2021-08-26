@@ -1,0 +1,38 @@
+private static void AddNewCustomesWithManyOrders()
+        {
+            var ctx = new Context();
+            Customer newcust = new Customer();
+
+            newcust.ID = 2;
+            newcust.Name = "Roja";
+
+            Order ord1 = new Order();
+            ord1.Order_ID = 20;
+            ord1.Amount = 100;
+            ord1.OrderDate = DateTime.Now;
+
+            Order ord2 = new Order();
+            ord2.Order_ID = 30;
+            ord2.Amount = 100;
+            ord2.OrderDate = DateTime.Now;
+
+
+            //ord.cust = newcust;                             // Connecting Orders to Customers
+
+            List<Order> myorders = new List<Order>();    // Connecting customers to orders
+            myorders.Add(ord1);
+            myorders.Add(ord2);
+            newcust.Orders = myorders;
+
+            try
+            {
+                //ctx.Orders.Add(ord);                   // When orders to customers connection 
+
+                ctx.Customers.Add(newcust);              // When customers to orders connection
+                ctx.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.InnerException.ToString());
+            }
+        }
