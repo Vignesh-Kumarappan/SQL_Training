@@ -1,0 +1,20 @@
+[Table("MyBooK")]
+    
+    public class Book
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+
+        public int BookID { get; set; }
+
+        [Required]
+        [MinLength(1)]
+        [MaxLength(25)]
+        public string BookName { get; set; }
+
+        [Required]
+        public decimal Price { get; set; }
+  
+        [Column("Author Name")]
+        [StringLength(30)]
+        public string Author { get; set; }
+    }
