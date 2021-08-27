@@ -1,0 +1,11 @@
+private static void GetAllEmployeeNamesWithFirstLetter()
+        {
+            var ctx = new Vignesh_20256Context();
+
+            var emp = ctx.Emps.Where(e => e.Ename.StartsWith("J"));  // lamda expression
+
+            foreach (var e in emp)
+            {
+                Console.WriteLine($"{e.Ename}");
+            }
+        }
