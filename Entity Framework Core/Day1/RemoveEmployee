@@ -1,0 +1,21 @@
+ private static void RemoveEmployee()
+        {
+            var ctx = new Vignesh_20256Context();
+
+            Emp employee = new Emp();
+            employee.Empno = 5050;
+            //employee.Ename = "Mary";
+            //employee.Sal = 2000;
+            //employee.Deptno = 10;
+
+            try
+            {
+                ctx.Emps.Remove(employee);
+                ctx.SaveChanges();
+                Console.WriteLine("employee details Deleted");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.InnerException.ToString());
+            }
+        }
