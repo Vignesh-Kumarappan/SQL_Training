@@ -1,0 +1,12 @@
+private static void GetEmploeDetailsByDeptNo()
+        {
+            var ctx = new Vignesh_20256Context();
+
+            var emp = ctx.Emps.Where(e => e.Deptno == 10);  // lamda expression
+
+            foreach (var e in emp)
+            {
+                Console.WriteLine($"{e.Ename}  {e.Deptno}");
+            }
+
+        }
