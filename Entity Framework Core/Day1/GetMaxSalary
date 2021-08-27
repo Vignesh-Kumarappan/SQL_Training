@@ -1,0 +1,9 @@
+private static void GetMaxSalary()
+        {
+            var ctx = new Vignesh_20256Context();
+
+            var emp = ctx.Emps;  // lamda expression
+            var result = emp.Max(s => s.Sal);
+            Console.WriteLine($"{result}");
+
+        }
