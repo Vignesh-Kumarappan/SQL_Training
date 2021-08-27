@@ -1,0 +1,8 @@
+private static void GetSumSalaryByDeptNo()
+        {
+            var ctx = new Vignesh_20256Context();
+
+            var emp = ctx.Emps.Where(e => e.Deptno == 10).Sum(s => s.Sal); ;  // lamda expression
+            Console.WriteLine($"{emp}");
+
+        }
